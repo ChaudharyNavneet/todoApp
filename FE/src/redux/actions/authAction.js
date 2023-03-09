@@ -14,7 +14,8 @@ export const login = (username, password) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem('authToken',JSON.stringify(authToken));
+        localStorage.setItem('authToken', JSON.stringify(authToken));
+        if (data.statusCode !== 401)
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
       })
       .catch((error) => {
@@ -40,6 +41,7 @@ export const signUp = (username, password) => {
       .then((response) => response.json())
       .then((data) => {
         localStorage.setItem('authToken',JSON.stringify(authToken));
+        if (data.statusCode !== 401)
         dispatch({ type: "SIGNUP_SUCCESS", payload: data });
       })
       .catch((error) => {

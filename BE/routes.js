@@ -14,19 +14,24 @@ router.post("/signup", async (req, res) => {
       password,
     });
     const exists = await User.findOne({ username }).exec();
+    console.log(exists)
     if (exists) {
+      console.log('executing')
       return res.status(401).json({
         message: "User Already signed up login to access TODOs",
         error: err.message,
+        statusCode: 401,
       });
     }
+    console.log("after exists")
 
     await user.save();
     res.status(201).json({ message: "User created successfully" });
   } catch (err) {
-    res.status(500).json({
+    res.status(401).json({
       message: "Error creating user",
       error: err.message,
+      statusCode: 401,
     });
   }
 });
@@ -38,11 +43,11 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ username }).exec();
 
     if (!user) {
-      return res.status(401).json({ message: "User not found" });
+      return res.status(401).json({ message: "User not found", statusCode: 401 });
     }
 
     if (user.password !== password) {
-      return res.status(401).json({ message: "Incorrect password" });
+      return res.status(401).json({ message: "Incorrect password", statusCode: 401});
     }
 
     return res.json({
@@ -53,6 +58,7 @@ router.post("/login", async (req, res) => {
     res.status(500).json({
       message: "Error logging in",
       error: err.message,
+      statusCode: 401,
     });
   }
 });
