@@ -2,58 +2,30 @@
   margin-top: 30px;
 }
 
-.todo-item {
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-}
-
-.todo-item h3 {
-  margin-top: 0;
-}
-
-.todo-item p {
-  margin-bottom: 5px;
-}
-
-.todo-item button {
-  margin: 5px;
-  padding: 8px 16px;
-  border-radius: 5px;
-  background-color: #3f51b5;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
-.todo-item button:hover {
-  background-color: #2c3e50;
-}
 
 .todo-edit-form {
-  margin-top: 30px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
   background-color: #fff;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.todo-edit-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .todo-edit-form label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.todo-edit-form label[for="completed"] {
-  display: inline-block;
-  margin-right: 10px;
-  vertical-align: middle;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .todo-edit-form input[type="text"],
 .todo-edit-form textarea {
-  display: block;
-  width: 100%;
   padding: 8px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -68,16 +40,69 @@
 }
 
 .todo-edit-form button[type="submit"] {
-  padding: 8px 16px;
-  border-radius: 5px;
-  background-color: #3f51b5;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-top: 10px;
   border: none;
-  color: #fff;
+  background-color: #eee;
+  color: #444;
+  border-radius: 5px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .todo-edit-form button[type="submit"]:hover {
-  background-color: #2c3e50;
+  background-color: #444;
+  color: #fff;
 }
 
 
+
+
+
+
+.todo-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.todo-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.todo-item h4 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.todo-item p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.todo-item button {
+  font-size: 14px;
+  padding: 5px 10px;
+  margin: 5px 0;
+  border: none;
+  background-color: #eee;
+  color: #444;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.todo-item button:hover {
+  background-color: #444;
+  color: #fff;
+}

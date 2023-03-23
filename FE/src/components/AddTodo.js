@@ -10,11 +10,12 @@ const AddTodo = () => {
   const [description, setDescription] = useState("");
   const [showForm, setShowForm] = useState(false)
   const [completed, setEditCompleted] = useState(false);
+  const [dueDate, setDate] = useState('');
   const loggedIn = useSelector((state) => state?.auth?.loggedIn || false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(addTodo({ userId, title, completed, description }));
+    dispatch(addTodo({ userId, title, completed, description, dueDate }));
     setTitle("");
     setDescription("");
   };
@@ -50,6 +51,10 @@ const AddTodo = () => {
           onChange={(event) => setEditCompleted(event.target.checked)}
           className="add-todo-input-checkbox"
         />
+      </div>
+      <div className="add-todo-input-container" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <label htmlFor="date-input">Choose a date:</label>
+        <input type="date" id="date-input" value={dueDate} onChange={(e)=>setDate(e.target.value)} />
       </div>
       <button type="submit" className="add-todo-button">Add Todo</button>
     </form>

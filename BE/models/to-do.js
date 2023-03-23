@@ -5,7 +5,6 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description : String,
   completed: {
     type: Boolean,
     default: false,
@@ -13,6 +12,12 @@ const TodoSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+  },
+  description: {
+    type: String,
+  },
+  dueDate: {
+    type:String,
   },
 });
 

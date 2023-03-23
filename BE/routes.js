@@ -14,16 +14,13 @@ router.post("/signup", async (req, res) => {
       password,
     });
     const exists = await User.findOne({ username }).exec();
-    console.log(exists)
     if (exists) {
-      console.log('executing')
       return res.status(401).json({
         message: "User Already signed up login to access TODOs",
         error: err.message,
         statusCode: 401,
       });
     }
-    console.log("after exists")
 
     await user.save();
     res.status(201).json({ message: "User created successfully" });
@@ -81,13 +78,14 @@ router.get("/todos/:userId", async (req, res) => {
 });
 
 router.post("/addTodo", async (req, res) => {
-  const { title, description, completed , userId} = req.body;
+  const { title, description, completed , userId, dueDate} = req.body;
 
   const todo = new Todo({
     title,
     description,
     completed,
     userId,
+    dueDate,
   });
 
   try {
@@ -102,7 +100,7 @@ router.post("/addTodo", async (req, res) => {
 });
 
 router.put("/editTodo/:id", async (req, res) => {
-  const { title, description, completed, userId } = req.body;
+  const { title, description, completed, userId, dueDate } = req.body;
   try {
     const todo = await Todo.findOne({
       _id: req.params.id,
@@ -115,7 +113,8 @@ router.put("/editTodo/:id", async (req, res) => {
 
     todo.title = title || todo.title;
     todo.description = description || todo.description;
-    todo.completed = completed ;
+    todo.completed = completed;
+    todo.dueDate= dueDate || todo.dueDate
 
     await todo.save();
 
