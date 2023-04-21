@@ -7,34 +7,32 @@ function todosReducer(state = initialState, action) {
     case "ADD_TODO_SUCCESS":
       return {
         ...state,
+        todos: [...state.todos, action.payload],
+      };
+    case "EDIT_TODO_SUCCESS":
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          return todo._id === action.payload.todoId
+            ? action.payload.updatedTodo
+            : todo;
+        }),
       };
     case "FETCH_TODO_LIST_SUCCESS":
       return {
         ...state,
         todos: action.payload,
       };
-    case "ADD_TODO":
-      return {
-        ...state,
-        todos: [...state.todos, action.payload],
-      };
-    case "DELETE_TODO":
+    case "DELETE_TODO_SUCCESS":
       return {
         ...state,
         todos: state.todos?.filter((todo) => todo._id !== action.payload),
       };
-    case "UPDATE_TODO":
-      return {
-        ...state,
-        todos: state.todos?.map((todo) =>
-          todo.id === action.payload.id ? action.payload : todo
-        ),
-      };
     case "LOGOUT":
       return {
         ...state,
-        todos:[]
-      }
+        todos: [],
+      };
     default:
       return state;
   }

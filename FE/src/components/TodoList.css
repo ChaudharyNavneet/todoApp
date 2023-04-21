@@ -2,16 +2,10 @@
   margin-top: 30px;
 }
 
-
 .todo-edit-form {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  padding: 10px;
   background-color: #fff;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  transition: all 0.3s ease-in-out;
 }
 
 .todo-edit-form:hover {
@@ -55,11 +49,6 @@
   background-color: #444;
   color: #fff;
 }
-
-
-
-
-
 
 .todo-item {
   display: flex;

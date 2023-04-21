@@ -4,7 +4,7 @@ export const fetchTodos = (userId) => {
     headers: {
       "Content-Type": "application/json",
     },
-    userId:userId,
+    userId: userId,
   };
   return (dispatch) => {
     dispatch({ type: "FETCH_TODO_LIST_PENDING" });
@@ -31,11 +31,10 @@ export const addTodo = (todo) => {
     dispatch({ type: "ADD_TODO_PENDING" });
     fetch(`http://localhost:4000/addTodo`, options)
       .then((response) => response.json())
-      .then((data) => {
-        dispatch(fetchTodos(todo.userId));
+      .then(() => {
         dispatch({
           type: "ADD_TODO_SUCCESS",
-          payload: { data: data, _id: todo._id },
+          payload: todo,
         });
       })
       .catch((error) => {
@@ -53,9 +52,6 @@ export const deleteTodo = (todoId, userId) => {
     fetch(`http://localhost:4000/deleteTodo/${todoId}`, options)
       .then((response) => response.json())
       .then(() => {
-        dispatch(fetchTodos(userId));
-        const userData = { username: 'jdoe', email: 'jdoe@example.com' };
-        localStorage.setItem('userData', JSON.stringify(userData));
         dispatch({ type: "DELETE_TODO_SUCCESS", payload: todoId });
       })
       .catch((error) => {
@@ -76,11 +72,10 @@ export const editTodo = (todoId, updatedTodo) => {
     dispatch({ type: "EDIT_TODO_PENDING" });
     fetch(`http://localhost:4000/editTodo/${todoId}`, options)
       .then((response) => response.json())
-      .then((data) => {
-        dispatch(fetchTodos(updatedTodo.userId));
+      .then(() => {
         dispatch({
           type: "EDIT_TODO_SUCCESS",
-          payload: { data: data, _id: todoId },
+          payload: { todoId: todoId, updatedTodo: updatedTodo },
         });
       })
       .catch((error) => {
